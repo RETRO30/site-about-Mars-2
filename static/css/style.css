@@ -8,5 +8,8 @@ img {
   margin-right: auto;
 }
 h4 {
+    margin-left: 30px;
+}
+h4.header {
     margin-left: 15%;
 }
