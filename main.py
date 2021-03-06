@@ -1,8 +1,12 @@
 from flask import Flask
 from flask import render_template
+from flask import redirect
 import json
 
+from loginform import LoginForm
+
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'KSN6W4VdXRcR1tzR7IHMmtNFgW6UsTZn'
 
 
 @app.route('/index/<string:title>')
@@ -27,6 +31,14 @@ def answer():
     with open('answer.json', 'rt', encoding='utf8') as f:
         data = json.loads(f.read())
     return render_template('auto_answer.html', **data)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        return redirect('/login')
+    return render_template('login.html', title='Авторизация', form=form)
 
 
 if __name__ == '__main__':
