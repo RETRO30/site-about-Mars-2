@@ -41,5 +41,11 @@ def login():
     return render_template('login.html', title='Авторизация', form=form)
 
 
+@app.route('/distribution')
+def distribution():
+    data = list(map(lambda x: x.strip(), open('static/txt/distribution.txt', encoding='utf8').readlines()))
+    return render_template('distribution.html', title='Размещение по каютам', data=data)
+
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
