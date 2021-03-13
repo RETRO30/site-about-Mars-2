@@ -21,8 +21,10 @@ def training(profession):
 
 @app.route('/list_prof/<type_list>')
 def list_prof(type_list):
-    professions = list(map(lambda x: x.strip(), open('static/txt/professions.txt', encoding='utf8').readlines()))
-    return render_template('list_prof.html', title='Список профессий', type_list=type_list, professions=professions)
+    professions = list(
+        map(lambda x: x.strip(), open('static/txt/professions.txt', encoding='utf8').readlines()))
+    return render_template('list_prof.html', title='Список профессий', type_list=type_list,
+                           professions=professions)
 
 
 @app.route('/answer')
@@ -43,8 +45,14 @@ def login():
 
 @app.route('/distribution')
 def distribution():
-    data = list(map(lambda x: x.strip(), open('static/txt/distribution.txt', encoding='utf8').readlines()))
+    data = list(
+        map(lambda x: x.strip(), open('static/txt/distribution.txt', encoding='utf8').readlines()))
     return render_template('distribution.html', title='Размещение по каютам', data=data)
+
+
+@app.route('/table/<user_sex>/<int:user_age>')
+def table(user_sex, user_age):
+    return render_template('table.html', title='Цвет каюты', user_sex=user_sex, user_age=user_age)
 
 
 if __name__ == '__main__':
