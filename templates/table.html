@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="center">Оформление каюты</h2>
+    <table class="center" border="1" width="50%" cellpadding="5">
+        <tr>
+            <td width="50%">Цвет стен</td>
+            <td width="50%">Эмблема</td>
+        </tr>
+        <tr>
+            {% if user_sex == 'male'%}
+                {% if user_age > 21 %}
+                    <td bgcolor="1145bf"></td>
+                {% else %}
+                    <td bgcolor="99aee8"></td>
+                {% endif %}
+            {% elif user_sex == 'female' %}
+                {% if user_age > 21 %}
+                    <td bgcolor="ff2e2e"></td>
+                {% else %}
+                    <td bgcolor="ff9494"></td>
+                {% endif %}
+            {% endif %}
+            {% if user_age > 21 %}
+                <td>
+                    <img src="/static/img/older_marsianin.png">
+                </td>
+            {% else %}
+                <td>
+                    <img src="/static/img/younger_marsianin.png">
+                </td>
+            {% endif %}
+        </tr>
+    </table>
+{% endblock %}
